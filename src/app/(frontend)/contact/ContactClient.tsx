@@ -170,7 +170,7 @@ export function ContactClient({ openingHours, contactInfo }: ContactClientProps)
                       allowFullScreen
                       loading="lazy"
                       referrerPolicy="no-referrer-when-downgrade"
-                      title="Localisation Rust-in"
+                      title="Localisation Cyclette & Glisse"
                     />
                   </div>
                   {/* Address below */}

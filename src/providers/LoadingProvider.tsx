@@ -153,7 +153,7 @@ function LoadingScreen() {
           {/* Brand */}
           <div className="text-center">
             <h1 className="text-5xl md:text-6xl font-bold handwritten-title mb-3 animate-pulse">
-              Rust-in
+              Cyclette & Glisse
             </h1>
             <p className="text-white/80 text-lg">Vélos • Skis • Trottinettes</p>
           </div>
@@ -222,7 +222,7 @@ export function LoadingProvider({ children }: { children: ReactNode }) {
 
   // Check session storage on mount
   useEffect(() => {
-    const hasVisited = sessionStorage.getItem('rust-in-visited')
+    const hasVisited = sessionStorage.getItem('cyclette-visited')
     if (hasVisited) {
       // If already visited this session, skip loading
       setShowLoading(false)
@@ -242,7 +242,7 @@ export function LoadingProvider({ children }: { children: ReactNode }) {
     if (userLoaded && minimumTimePassed && showLoading) {
       // Small delay for smooth transition
       const hideTimer = setTimeout(() => {
-        sessionStorage.setItem('rust-in-visited', 'true')
+        sessionStorage.setItem('cyclette-visited', 'true')
         setShowLoading(false)
       }, 300)
       return () => clearTimeout(hideTimer)

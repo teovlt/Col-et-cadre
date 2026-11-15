@@ -141,7 +141,9 @@ export function Header() {
       <div className="container mx-auto px-4 relative">
         <div className="flex items-center h-20">
           <Link href="/" className="flex items-center gap-3 group">
-            <div className="text-4xl font-bold text-primary handwritten-title">Rust-in</div>
+            <div className="text-3xl md:text-4xl font-bold text-primary handwritten-title whitespace-nowrap">
+              Cyclette & Glisse
+            </div>
           </Link>
 
           <div className="hidden md:flex items-center gap-6 ml-auto mr-6">

@@ -62,8 +62,8 @@ export default buildConfig({
       ],
     },
     meta: {
-      title: 'Rust-in - Administration',
-      description: "Panneau d'administration du site Rust-in",
+      title: 'Cyclette & Glisse - Administration',
+      description: "Panneau d'administration du site Cyclette & Glisse",
       icons: [{ url: '/favicon.png' }],
     },
     dateFormat: 'dd/MM/yyyy à HH:mm',

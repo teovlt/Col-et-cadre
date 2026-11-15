@@ -31,7 +31,7 @@ export function Footer({ contactInfo }: FooterProps) {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           <div>
             <div className="flex items-center gap-2 mb-4">
-              <span className="text-2xl font-bold text-primary">Rust-in</span>
+              <span className="text-2xl font-bold text-primary">Cyclette & Glisse</span>
             </div>
             <p className="text-muted-foreground text-sm">
               Votre spécialiste vélos, skis et trottinettes d&apos;occasion. Vente et réparation
@@ -198,7 +198,18 @@ export function Footer({ contactInfo }: FooterProps) {
         </div>
 
         <div className="border-t border-border mt-8 pt-8 text-center text-sm text-muted-foreground">
-          <p>&copy; {new Date().getFullYear()} Rust-in. Tous droits réservés.</p>
+          <p>
+            Site de démonstration : Cyclette &amp; Glisse est un commerce fictif. Réalisé par{' '}
+            <a
+              href="https://teovillet.fr"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-primary hover:underline"
+            >
+              Téo Villet
+            </a>
+            .
+          </p>
           <Link href="/legal" className="hover:text-primary transition-colors">
             Mentions légales
           </Link>

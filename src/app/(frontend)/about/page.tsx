@@ -45,7 +45,7 @@ export default async function AboutPage() {
         </div>
         <div className="container mx-auto px-4 relative z-10">
           <h1 className="text-5xl md:text-7xl font-bold mb-6 text-balance handwritten-title">
-            À propos de Rust-in
+            À propos de Cyclette & Glisse
           </h1>
           <p className="text-2xl md:text-3xl text-primary-foreground/95 max-w-3xl text-pretty leading-relaxed">
             Votre atelier de confiance depuis 2015 - Où chaque vélo retrouve sa jeunesse
@@ -68,9 +68,10 @@ export default async function AboutPage() {
                   professionnelle.
                 </p>
                 <p>
-                  Le nom <span className="font-bold text-primary">"Rust-in"</span> est né de notre
-                  philosophie : transformer la rouille en or. Nous croyons fermement que chaque
-                  vélo, même le plus abîmé, mérite une seconde vie. C'est devenu notre mission.
+                  Le nom <span className="font-bold text-primary">"Cyclette &amp; Glisse"</span> résume
+                  ce que nous aimons : le vélo l'été, la glisse l'hiver. Nous croyons fermement que
+                  chaque vélo, chaque paire de skis, même la plus abîmée, mérite une seconde vie.
+                  C'est devenu notre mission.
                 </p>
                 <p>
                   Aujourd'hui, nous sommes fiers de servir plus de 500 cyclistes par mois, du
@@ -191,7 +192,7 @@ export default async function AboutPage() {
             Nos valeurs
           </h2>
           <p className="text-xl text-center text-muted-foreground mb-16 max-w-2xl mx-auto">
-            Ce qui nous guide au quotidien et fait de Rust-in bien plus qu'un simple atelier
+            Ce qui nous guide au quotidien et fait de Cyclette &amp; Glisse bien plus qu'un simple atelier
           </p>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             <Card className="organic-card shadow-xl border-4 border-primary/20 hover:shadow-2xl transition-shadow">

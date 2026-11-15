@@ -155,7 +155,7 @@ export default async function ShopPage() {
 }
 
 export const metadata = {
-  title: 'Boutique - Vélos, Skis & Trottinettes - Rust-in',
+  title: 'Boutique - Vélos, Skis & Trottinettes - Cyclette & Glisse',
   description:
     "Découvrez nos vélos, skis et trottinettes d'occasion reconditionnés. Qualité garantie.",
 }

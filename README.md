@@ -1,10 +1,12 @@
-# Rust-in Website
+# Cyclette & Glisse
 
-Rust-in is a modern bicycle shop website built with [Payload CMS](https://payloadcms.com) and [Next.js](https://nextjs.org). The website features a fully-functional admin panel for managing content, products (bikes, scooters, skis), team members, reviews, FAQs, and more.
+> **Demo site.** Cyclette & Glisse is a fictional shop. All names, products, prices, team members and reviews are made up. Built by [Téo Villet](https://teovillet.fr) as a portfolio example.
 
-## About Rust-in
+Cyclette & Glisse is a modern bicycle shop website built with [Payload CMS](https://payloadcms.com) and [Next.js](https://nextjs.org). The website features a fully-functional admin panel for managing content, products (bikes, scooters, skis), team members, reviews, FAQs, and more.
 
-Rust-in is a bicycle repair shop and sales platform that helps cyclists maintain and purchase quality bikes. The website showcases:
+## About Cyclette & Glisse
+
+Cyclette & Glisse is a (fictional) bike, ski and scooter repair shop and sales platform that helps cyclists maintain and purchase quality bikes. The website showcases:
 
 - **Product Catalog**: Browse and manage bikes, scooters, and skis
 - **Team Management**: Showcase your team members with photos and descriptions
@@ -37,7 +39,7 @@ Before you begin, ensure you have the following installed:
 
 ```bash
 git clone <repository-url>
-cd Rust-in
+cd cyclette-glisse
 ```
 
 ### 2. Install Dependencies
@@ -52,9 +54,9 @@ Create a `.env` file in the root directory and configure the following variables
 
 ```env
 # Database
-DATABASE_URI=mongodb://localhost:27017/rust-in
+DATABASE_URI=mongodb://localhost:27017/cyclette-glisse
 # or for MongoDB Atlas:
-# DATABASE_URI=mongodb+srv://username:password@cluster.mongodb.net/rust-in
+# DATABASE_URI=mongodb+srv://username:password@cluster.mongodb.net/cyclette-glisse
 
 # Payload Secret (generate a random string)
 PAYLOAD_SECRET=your-secret-key-here

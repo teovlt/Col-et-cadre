@@ -18,7 +18,7 @@ const BeforeLogin: React.FC = () => {
           fontFamily: 'Nunito, sans-serif',
         }}
       >
-        Rust-in
+        Cyclette & Glisse
       </div>
       <p
         style={{

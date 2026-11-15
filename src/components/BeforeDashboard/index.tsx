@@ -9,7 +9,7 @@ const BeforeDashboard: React.FC = () => {
   return (
     <div className={baseClass}>
       <Banner className={`${baseClass}__banner`} type="success">
-        <h4>Bienvenue sur votre tableau de bord Rust-in ! 🚴⛷️🛴</h4>
+        <h4>Bienvenue sur votre tableau de bord Cyclette & Glisse ! 🚴⛷️🛴</h4>
       </Banner>
       <p style={{ marginTop: '1rem' }}>Depuis cet espace, vous pouvez gérer :</p>
       <ul className={`${baseClass}__instructions`}>

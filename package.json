@@ -1,7 +1,7 @@
 {
-  "name": "Rust-in",
+  "name": "cyclette-glisse",
   "version": "1.0.0",
-  "description": "Rust-in website",
+  "description": "Cyclette & Glisse — site de démonstration (commerce fictif)",
   "license": "MIT",
   "type": "module",
   "scripts": {

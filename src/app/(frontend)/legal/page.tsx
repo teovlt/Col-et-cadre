@@ -1,4 +1,4 @@
-import { Scale, Building2, Code, Server, Shield, Mail, Phone, MapPin, FileText } from 'lucide-react'
+import { Scale, Building2, Code, Server, Shield, FileText } from 'lucide-react'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 
 export default function LegalPage() {
@@ -38,51 +38,32 @@ export default function LegalPage() {
                 </CardTitle>
               </CardHeader>
               <CardContent className="space-y-4">
-                <div>
-                  <h4 className="font-semibold mb-2">Raison sociale</h4>
-                  <p className="text-muted-foreground">Rust-in SARL</p>
+                <div className="rounded-xl border border-primary/30 bg-primary/5 p-4 text-foreground">
+                  <p className="font-semibold mb-1">Site de démonstration</p>
+                  <p className="text-muted-foreground">
+                    Cyclette &amp; Glisse est un commerce fictif. Ce site est un exemple de
+                    réalisation : les noms, adresses, produits, prix, membres de l&apos;équipe et avis
+                    affichés sont inventés. Aucune commande ni demande envoyée ici n&apos;est traitée.
+                  </p>
                 </div>
                 <div>
-                  <h4 className="font-semibold mb-2">Forme juridique</h4>
-                  <p className="text-muted-foreground">Société à Responsabilité Limitée (SARL)</p>
-                </div>
-                <div>
-                  <h4 className="font-semibold mb-2">Capital social</h4>
-                  <p className="text-muted-foreground">10 000 €</p>
-                </div>
-                <div>
-                  <h4 className="font-semibold mb-2">SIRET</h4>
-                  <p className="text-muted-foreground">XXX XXX XXX XXXXX</p>
-                </div>
-                <div>
-                  <h4 className="font-semibold mb-2">Numéro TVA intracommunautaire</h4>
-                  <p className="text-muted-foreground">FR XX XXX XXX XXX</p>
-                </div>
-                <div>
-                  <h4 className="font-semibold mb-2">Siège social</h4>
-                  <div className="flex items-start gap-2 text-muted-foreground">
-                    <MapPin className="w-4 h-4 mt-1 flex-shrink-0" />
-                    <p>123 Bike Lane<br />31000 Toulouse<br />France</p>
-                  </div>
+                  <h4 className="font-semibold mb-2">Éditeur</h4>
+                  <p className="text-muted-foreground">Téo Villet, développeur web indépendant</p>
                 </div>
                 <div>
                   <h4 className="font-semibold mb-2">Contact</h4>
-                  <div className="space-y-2 text-muted-foreground">
-                    <div className="flex items-center gap-2">
-                      <Phone className="w-4 h-4" />
-                      <span>(555) 123-4567</span>
-                    </div>
-                    <div className="flex items-center gap-2">
-                      <Mail className="w-4 h-4" />
-                      <a href="mailto:contact@rust-in.com" className="hover:text-primary transition-colors">
-                        contact@rust-in.com
-                      </a>
-                    </div>
-                  </div>
+                  <a
+                    href="https://teovillet.fr"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-primary hover:underline"
+                  >
+                    teovillet.fr
+                  </a>
                 </div>
                 <div>
                   <h4 className="font-semibold mb-2">Directeur de la publication</h4>
-                  <p className="text-muted-foreground">M. / Mme [Nom du gérant]</p>
+                  <p className="text-muted-foreground">Téo Villet</p>
                 </div>
               </CardContent>
             </Card>
@@ -137,7 +118,7 @@ export default function LegalPage() {
               <CardContent className="space-y-4">
                 <div>
                   <h4 className="font-semibold mb-2">Développeur</h4>
-                  <p className="text-muted-foreground">[Nom du développeur / Agence]</p>
+                  <p className="text-muted-foreground">Téo Villet</p>
                 </div>
                 <div>
                   <h4 className="font-semibold mb-2">Technologies utilisées</h4>
@@ -145,11 +126,13 @@ export default function LegalPage() {
                 </div>
                 <div>
                   <h4 className="font-semibold mb-2">Contact</h4>
-                  <a 
-                    href="mailto:dev@example.com" 
+                  <a
+                    href="https://teovillet.fr"
+                    target="_blank"
+                    rel="noopener noreferrer"
                     className="text-primary hover:underline"
                   >
-                    dev@example.com
+                    teovillet.fr
                   </a>
                 </div>
               </CardContent>
@@ -168,10 +151,10 @@ export default function LegalPage() {
               <CardContent className="space-y-4 text-muted-foreground">
                 <p>
                   L&apos;ensemble du contenu de ce site (textes, images, vidéos, logos, icônes, etc.) 
-                  est la propriété exclusive de Rust-in SARL ou de ses partenaires. Toute reproduction, 
+                  est la propriété de Téo Villet ou de ses auteurs respectifs. Toute reproduction, 
                   représentation, modification, publication, adaptation de tout ou partie des éléments 
                   du site, quel que soit le moyen ou le procédé utilisé, est interdite sans 
-                  l&apos;autorisation écrite préalable de Rust-in SARL.
+                  l&apos;autorisation écrite préalable de Téo Villet.
                 </p>
                 <p>
                   Toute exploitation non autorisée du site ou de l&apos;un quelconque des éléments qu&apos;il 
@@ -209,8 +192,13 @@ export default function LegalPage() {
                 <p>
                   Pour exercer ces droits ou pour toute question relative à la protection de vos 
                   données personnelles, vous pouvez nous contacter à l&apos;adresse suivante : 
-                  <a href="mailto:rgpd@rust-in.com" className="text-primary hover:underline ml-1">
-                    rgpd@rust-in.com
+                  <a
+                    href="https://teovillet.fr"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-primary hover:underline ml-1"
+                  >
+                    teovillet.fr
                   </a>
                 </p>
                 <p>
@@ -261,11 +249,11 @@ export default function LegalPage() {
                 <p>
                   Les informations contenues sur ce site sont aussi précises que possible et le site 
                   est périodiquement mis à jour. Toutefois, des informations erronées ou des omissions 
-                  peuvent être présentes. L&apos;utilisateur devra vérifier l&apos;exactitude des informations 
-                  auprès de Rust-in SARL.
+                  peuvent être présentes. Le commerce présenté étant fictif, aucune information de ce site
+                  (prix, horaires, disponibilités) ne constitue une offre commerciale.
                 </p>
                 <p>
-                  Rust-in SARL ne pourra être tenue responsable des dommages directs et indirects 
+                  L&apos;éditeur ne pourra être tenu responsable des dommages directs et indirects 
                   causés au matériel de l&apos;utilisateur lors de l&apos;accès au site, et résultant soit de 
                   l&apos;utilisation d&apos;un matériel ne répondant pas aux spécifications requises, soit de 
                   l&apos;apparition d&apos;un bug ou d&apos;une incompatibilité.
@@ -303,7 +291,7 @@ export default function LegalPage() {
 }
 
 export const metadata = {
-  title: 'Mentions légales - Rust-in',
-  description: 'Mentions légales et informations juridiques du site Rust-in.',
+  title: 'Mentions légales - Cyclette & Glisse',
+  description: 'Mentions légales et informations juridiques du site de démonstration Cyclette & Glisse.',
 }
 

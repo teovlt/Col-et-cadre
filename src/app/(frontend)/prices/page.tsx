@@ -26,6 +26,6 @@ export default async function PricesPage() {
 export const revalidate = 60
 
 export const metadata = {
-  title: 'Tarifs - Rust-in',
+  title: 'Tarifs - Cyclette & Glisse',
   description: 'Découvrez nos tarifs de réparation vélo à Toulouse',
 }

@@ -1,6 +1,6 @@
 import type { Theme } from './types'
 
-export const themeLocalStorageKey = 'rust-in-theme'
+export const themeLocalStorageKey = 'cyclette-theme'
 
 export const defaultTheme = 'light'
 
