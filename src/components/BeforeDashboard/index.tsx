@@ -3,6 +3,7 @@ import React from 'react'
 import type { Payload } from 'payload'
 
 import { siteDefaults } from '@/utilities/siteDefaults'
+import { SeedButton } from './SeedButton'
 
 import './index.scss'
 
@@ -17,6 +18,10 @@ const BeforeDashboard = async ({ payload }: { payload: Payload }) => {
       <Banner className={`${baseClass}__banner`} type="success">
         <h4>Bienvenue sur l&apos;espace de gestion de {name}</h4>
       </Banner>
+      <p style={{ marginTop: '1rem' }}>
+        Base vide ? <SeedButton /> ajoute les produits, l&apos;équipe, les avis, la FAQ, les tarifs et les horaires de
+        démonstration. Les sections déjà remplies ne sont pas touchées.
+      </p>
       <p style={{ marginTop: '1rem' }}>Depuis cet espace, vous pouvez gérer :</p>
       <ul className={`${baseClass}__instructions`}>
         <li>

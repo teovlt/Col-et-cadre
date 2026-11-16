@@ -63,7 +63,6 @@ export default async function ContactPage() {
   )
 }
 
-export const revalidate = 60
 
 export const metadata = {
   title: 'Contact & rendez-vous',

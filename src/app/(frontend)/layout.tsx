@@ -33,6 +33,10 @@ const mono = DM_Mono({
   weight: ['400', '500'],
 })
 
+// Pages rendues à la demande : le contenu vient de la base, qui n'est pas
+// joignable pendant le build Docker. Le global « Identité » reste en cache.
+export const dynamic = 'force-dynamic'
+
 export const viewport: Viewport = {
   width: 'device-width',
   initialScale: 1,

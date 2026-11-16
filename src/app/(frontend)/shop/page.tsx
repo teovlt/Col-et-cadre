@@ -87,4 +87,3 @@ export const metadata = {
   description: "Vélos, skis, snowboards et trottinettes d'occasion, révisés à l'atelier et garantis 3 mois.",
 }
 
-export const revalidate = 60

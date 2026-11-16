@@ -110,7 +110,6 @@ export default async function PricesPage() {
   )
 }
 
-export const revalidate = 60
 
 export const metadata = {
   title: 'Atelier & tarifs',
