@@ -1,5 +1,4 @@
 import React from 'react'
-import { Barlow, Barlow_Condensed, DM_Mono } from 'next/font/google'
 import type { Metadata, Viewport } from 'next'
 
 import { getServerSideURL } from '@/utilities/getURL'
@@ -8,30 +7,9 @@ import { getContactInfo, getOpeningHours, getSiteSettings } from '@/utilities/si
 import { Footer } from '@/Footer/Component'
 import { Header } from '@/Header/Component'
 import { SiteProvider } from '@/providers/Site'
+import { body, display, mono } from '@/fonts'
 
 import '../globals.css'
-
-// Barlow s'inspire des panneaux routiers : la version condensée pour les titres
-const display = Barlow_Condensed({
-  subsets: ['latin'],
-  variable: '--font-display',
-  display: 'swap',
-  weight: ['500', '600', '700', '800'],
-})
-
-const body = Barlow({
-  subsets: ['latin'],
-  variable: '--font-body',
-  display: 'swap',
-  weight: ['400', '500', '600', '700'],
-})
-
-const mono = DM_Mono({
-  subsets: ['latin'],
-  variable: '--font-mono',
-  display: 'swap',
-  weight: ['400', '500'],
-})
 
 // Pages rendues à la demande : le contenu vient de la base, qui n'est pas
 // joignable pendant le build Docker. Le global « Identité » reste en cache.

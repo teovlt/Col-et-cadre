@@ -1,10 +1,8 @@
 import Link from 'next/link'
-import { Barlow, Barlow_Condensed } from 'next/font/google'
+
+import { body, display } from '@/fonts'
 
 import './globals.css'
-
-const display = Barlow_Condensed({ subsets: ['latin'], variable: '--font-display', weight: ['800'] })
-const body = Barlow({ subsets: ['latin'], variable: '--font-body', weight: ['400', '600'] })
 
 // 404 en dehors du site public (admin, API) : pas de header ni de footer
 export default function NotFound() {
