@@ -16,6 +16,7 @@ import { Scooters } from './collections/Scooters'
 import { Skis } from './collections/Skis'
 import { Team } from './collections/Team'
 import { Users } from './collections/Users'
+import { SiteSettings } from './globals/SiteSettings'
 import { plugins } from './plugins'
 import { defaultLexical } from '@/fields/defaultLexical'
 import { getServerSideURL } from './utilities/getURL'
@@ -62,9 +63,9 @@ export default buildConfig({
       ],
     },
     meta: {
-      title: 'Cyclette & Glisse - Administration',
-      description: "Panneau d'administration du site Cyclette & Glisse",
-      icons: [{ url: '/favicon.png' }],
+      titleSuffix: ' · Administration',
+      description: "Panneau d'administration du site",
+      icons: [{ url: '/favicon.svg', type: 'image/svg+xml' }],
     },
     dateFormat: 'dd/MM/yyyy à HH:mm',
   },
@@ -91,9 +92,11 @@ export default buildConfig({
     Prices,
   ],
   cors: [getServerSideURL()].filter(Boolean),
-  globals: [],
+  globals: [SiteSettings],
   plugins: [
     vercelBlobStorage({
+      // Sans jeton (en local), les médias restent dans public/media
+      enabled: Boolean(process.env.BLOB_READ_WRITE_TOKEN),
       collections: {
         [Media.slug]: true,
       },

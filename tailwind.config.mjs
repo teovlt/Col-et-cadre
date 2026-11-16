@@ -61,6 +61,13 @@ const config = {
           foreground: 'var(--accent-foreground)',
         },
         background: 'var(--background)',
+        // En hexadécimal (et non en variables CSS) pour que les opacités
+        // du type text-ink/70 ou bg-paper/95 fonctionnent. Mêmes valeurs que globals.css.
+        paper: { DEFAULT: '#f3eee3', deep: '#e8e1d2' },
+        ink: '#15201b',
+        pine: { DEFAULT: '#1f4436', deep: '#122a20' },
+        signal: '#f2b705',
+        glacier: '#bbd5db',
         border: 'var(--border)',
         card: {
           DEFAULT: 'var(--card)',
@@ -111,10 +118,15 @@ const config = {
         },
       },
       fontFamily: {
-        sans: ['var(--font-inter)', 'Inter', 'system-ui', 'sans-serif'],
-        mono: ['ui-monospace', 'SFMono-Regular', 'monospace'],
+        sans: ['var(--font-body)', 'system-ui', 'sans-serif'],
+        display: ['var(--font-display)', 'var(--font-body)', 'system-ui', 'sans-serif'],
+        mono: ['var(--font-mono)', 'ui-monospace', 'monospace'],
       },
       keyframes: {
+        marquee: {
+          from: { transform: 'translateX(0)' },
+          to: { transform: 'translateX(-50%)' },
+        },
         'accordion-down': {
           from: { height: '0' },
           to: { height: 'var(--radix-accordion-content-height)' },

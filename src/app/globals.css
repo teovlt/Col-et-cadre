@@ -2,113 +2,46 @@
 @tailwind components;
 @tailwind utilities;
 
+/*
+ * Direction artistique « Atelier alpin »
+ * Papier crème, vert sapin, jaune signalisation (les panneaux de col),
+ * bleu glacier pour la glisse. Typo : Barlow Condensed (titres) et Barlow
+ * (texte), dessinées d'après les panneaux routiers ; DM Mono pour les
+ * étiquettes, prix et données techniques.
+ */
 @layer base {
   :root {
-    --background: #e8ebed;
-    --foreground: #333333;
-    --card: #ffffff;
-    --card-foreground: #333333;
-    --popover: #ffffff;
-    --popover-foreground: #333333;
-    --primary: #e05d38;
-    --primary-foreground: #ffffff;
-    --secondary: #f3f4f6;
-    --secondary-foreground: #4b5563;
-    --muted: #f9fafb;
-    --muted-foreground: #6b7280;
-    --accent: #d6e4f0;
-    --accent-foreground: #1e3a8a;
-    --destructive: #ef4444;
-    --destructive-foreground: #ffffff;
-    --border: #dcdfe2;
-    --input: #f4f5f7;
-    --ring: #e05d38;
-    --chart-1: #86a7c8;
-    --chart-2: #eea591;
-    --chart-3: #5a7ca6;
-    --chart-4: #466494;
-    --chart-5: #334c82;
-    --sidebar: #dddfe2;
-    --sidebar-foreground: #333333;
-    --sidebar-primary: #e05d38;
-    --sidebar-primary-foreground: #ffffff;
-    --sidebar-accent: #d6e4f0;
-    --sidebar-accent-foreground: #1e3a8a;
-    --sidebar-border: #e5e7eb;
-    --sidebar-ring: #e05d38;
-    --font-sans: Nunito, sans-serif;
-    --font-serif: Source Serif 4, serif;
-    --font-mono: JetBrains Mono, monospace;
-    --radius: 0.75rem;
-    --shadow-x: 0px;
-    --shadow-y: 1px;
-    --shadow-blur: 3px;
-    --shadow-spread: 0px;
-    --shadow-opacity: 0.1;
-    --shadow-color: hsl(0 0% 0%);
-    --shadow-2xs: 0px 1px 3px 0px hsl(0 0% 0% / 0.05);
-    --shadow-xs: 0px 1px 3px 0px hsl(0 0% 0% / 0.05);
-    --shadow-sm: 0px 1px 3px 0px hsl(0 0% 0% / 0.1), 0px 1px 2px -1px hsl(0 0% 0% / 0.1);
-    --shadow: 0px 1px 3px 0px hsl(0 0% 0% / 0.1), 0px 1px 2px -1px hsl(0 0% 0% / 0.1);
-    --shadow-md: 0px 1px 3px 0px hsl(0 0% 0% / 0.1), 0px 2px 4px -1px hsl(0 0% 0% / 0.1);
-    --shadow-lg: 0px 1px 3px 0px hsl(0 0% 0% / 0.1), 0px 4px 6px -1px hsl(0 0% 0% / 0.1);
-    --shadow-xl: 0px 1px 3px 0px hsl(0 0% 0% / 0.1), 0px 8px 10px -1px hsl(0 0% 0% / 0.1);
-    --shadow-2xl: 0px 1px 3px 0px hsl(0 0% 0% / 0.25);
-    --tracking-normal: 0em;
-    --spacing: 0.25rem;
-  }
+    --paper: #f3eee3;
+    --paper-deep: #e8e1d2;
+    --ink: #15201b;
+    --pine: #1f4436;
+    --pine-deep: #122a20;
+    --signal: #f2b705;
+    --glacier: #bbd5db;
 
-  .dark {
-    --background: #1c2433;
-    --foreground: #e5e5e5;
-    --card: #2a3040;
-    --card-foreground: #e5e5e5;
-    --popover: #262b38;
-    --popover-foreground: #e5e5e5;
-    --primary: #e05d38;
-    --primary-foreground: #ffffff;
-    --secondary: #2a303e;
-    --secondary-foreground: #e5e5e5;
-    --muted: #2a303e;
-    --muted-foreground: #a3a3a3;
-    --accent: #2a3656;
-    --accent-foreground: #bfdbfe;
-    --destructive: #ef4444;
+    --background: var(--paper);
+    --foreground: var(--ink);
+    --card: #fbf8f2;
+    --card-foreground: var(--ink);
+    --popover: #fbf8f2;
+    --popover-foreground: var(--ink);
+    --primary: var(--pine);
+    --primary-foreground: var(--paper);
+    --secondary: var(--paper-deep);
+    --secondary-foreground: var(--ink);
+    --muted: #ebe5d8;
+    --muted-foreground: #56615b;
+    --accent: var(--signal);
+    --accent-foreground: var(--ink);
+    --destructive: #b42318;
     --destructive-foreground: #ffffff;
-    --border: #3d4354;
-    --input: #3d4354;
-    --ring: #e05d38;
-    --chart-1: #86a7c8;
-    --chart-2: #e6a08f;
-    --chart-3: #5a7ca6;
-    --chart-4: #466494;
-    --chart-5: #334c82;
-    --sidebar: #2a303f;
-    --sidebar-foreground: #e5e5e5;
-    --sidebar-primary: #e05d38;
-    --sidebar-primary-foreground: #ffffff;
-    --sidebar-accent: #2a3656;
-    --sidebar-accent-foreground: #bfdbfe;
-    --sidebar-border: #3d4354;
-    --sidebar-ring: #e05d38;
-    --font-sans: Nunito, sans-serif;
-    --font-serif: Source Serif 4, serif;
-    --font-mono: JetBrains Mono, monospace;
-    --radius: 0.75rem;
-    --shadow-x: 0px;
-    --shadow-y: 1px;
-    --shadow-blur: 3px;
-    --shadow-spread: 0px;
-    --shadow-opacity: 0.1;
-    --shadow-color: hsl(0 0% 0%);
-    --shadow-2xs: 0px 1px 3px 0px hsl(0 0% 0% / 0.05);
-    --shadow-xs: 0px 1px 3px 0px hsl(0 0% 0% / 0.05);
-    --shadow-sm: 0px 1px 3px 0px hsl(0 0% 0% / 0.1), 0px 1px 2px -1px hsl(0 0% 0% / 0.1);
-    --shadow: 0px 1px 3px 0px hsl(0 0% 0% / 0.1), 0px 1px 2px -1px hsl(0 0% 0% / 0.1);
-    --shadow-md: 0px 1px 3px 0px hsl(0 0% 0% / 0.1), 0px 2px 4px -1px hsl(0 0% 0% / 0.1);
-    --shadow-lg: 0px 1px 3px 0px hsl(0 0% 0% / 0.1), 0px 4px 6px -1px hsl(0 0% 0% / 0.1);
-    --shadow-xl: 0px 1px 3px 0px hsl(0 0% 0% / 0.1), 0px 8px 10px -1px hsl(0 0% 0% / 0.1);
-    --shadow-2xl: 0px 1px 3px 0px hsl(0 0% 0% / 0.25);
+    --border: #d8cfbd;
+    --input: #d8cfbd;
+    --ring: var(--pine);
+    --success: #2f7a4f;
+    --warning: #b7791f;
+    --error: #b42318;
+    --radius: 0.375rem;
   }
 }
 
@@ -117,37 +50,75 @@
     @apply border-border;
   }
 
+  html {
+    scroll-behavior: smooth;
+  }
+
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground font-sans antialiased;
     font-feature-settings:
-      'rlig' 1,
+      'ss01' 1,
       'calt' 1;
   }
 
-  html {
-    scroll-behavior: smooth;
+  h1,
+  h2,
+  h3,
+  h4 {
+    @apply font-display;
+    letter-spacing: -0.005em;
+    text-wrap: balance;
+  }
+
+  ::selection {
+    background: var(--signal);
+    color: var(--ink);
   }
 }
 
 @layer components {
-  /* Organic card style with subtle rotation */
-  .organic-card {
-    @apply rounded-2xl transition-all duration-300;
-    transform: rotate(-0.5deg);
+  /* Petite étiquette façon fiche d'atelier */
+  .tag {
+    @apply inline-flex items-center gap-2 font-mono text-[0.7rem] uppercase tracking-[0.14em];
   }
 
-  .organic-card:hover {
-    transform: rotate(0deg) scale(1.02);
+  /* Titre de section XXL, serré */
+  .display {
+    @apply font-display font-extrabold uppercase leading-[0.9];
+    letter-spacing: -0.01em;
   }
 
-  /* Smooth rounded title style */
-  .handwritten-title {
-    font-family: var(--font-nunito, 'Nunito', sans-serif);
-    letter-spacing: -0.02em;
-    font-weight: 800;
+  /* Bande de signalisation jaune et noire, comme le ruban d'un atelier */
+  .hazard {
+    background-image: repeating-linear-gradient(
+      -45deg,
+      var(--signal) 0 14px,
+      var(--ink) 14px 28px
+    );
   }
 
-  /* Custom scrollbar */
+  /* Courbes de niveau en fond, pour les zones vert sapin */
+  .contours {
+    background-image: url('/brand/contours.svg');
+    background-size: 900px auto;
+    background-repeat: repeat;
+  }
+
+  .link-underline {
+    background-image: linear-gradient(currentColor, currentColor);
+    background-size: 0% 2px;
+    background-position: 0 100%;
+    background-repeat: no-repeat;
+    transition: background-size 0.25s ease;
+  }
+
+  .link-underline:hover,
+  .link-underline[aria-current='page'] {
+    background-size: 100% 2px;
+  }
+}
+
+@layer utilities {
   .scrollbar-hide::-webkit-scrollbar {
     display: none;
   }
@@ -155,100 +126,5 @@
   .scrollbar-hide {
     -ms-overflow-style: none;
     scrollbar-width: none;
-  }
-
-  /* Smooth animations */
-  .animate-fade-in {
-    animation: fadeIn 0.5s ease-out;
-  }
-
-  .animate-slide-up {
-    animation: slideUp 0.5s ease-out;
-  }
-
-  .animate-bounce-slow {
-    animation: bounce 2s infinite;
-  }
-
-  @keyframes fadeIn {
-    from {
-      opacity: 0;
-    }
-    to {
-      opacity: 1;
-    }
-  }
-
-  @keyframes slideUp {
-    from {
-      opacity: 0;
-      transform: translateY(20px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
-
-  @keyframes bounce {
-    0%,
-    100% {
-      transform: translateY(-5%);
-      animation-timing-function: cubic-bezier(0.8, 0, 1, 1);
-    }
-    50% {
-      transform: translateY(0);
-      animation-timing-function: cubic-bezier(0, 0, 0.2, 1);
-    }
-  }
-
-  /* Loading animation */
-  @keyframes spin-slow {
-    from {
-      transform: rotate(0deg);
-    }
-    to {
-      transform: rotate(360deg);
-    }
-  }
-
-  .animate-spin-slow {
-    animation: spin-slow 3s linear infinite;
-  }
-
-  /* Pulse animation for loading */
-  @keyframes pulse-orange {
-    0%,
-    100% {
-      opacity: 1;
-    }
-    50% {
-      opacity: 0.5;
-    }
-  }
-
-  .animate-pulse-orange {
-    animation: pulse-orange 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
-  }
-
-  /* Progress bar animation */
-  @keyframes progress {
-    0% {
-      width: 0%;
-    }
-    100% {
-      width: 100%;
-    }
-  }
-
-  .animate-progress {
-    animation: progress 2s ease-out forwards;
-  }
-}
-
-/* Custom focus styles */
-@layer utilities {
-  .focus-ring {
-    @apply focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-background;
   }
 }

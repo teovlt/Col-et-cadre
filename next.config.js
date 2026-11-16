@@ -18,6 +18,8 @@ const nextConfig = {
           protocol: url.protocol.replace(':', ''),
         }
       }),
+      { protocol: 'https', hostname: 'images.unsplash.com' },
+      { protocol: 'https', hostname: '*.public.blob.vercel-storage.com' },
     ],
   },
   webpack: (webpackConfig) => {

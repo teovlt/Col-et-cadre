@@ -1,259 +1,121 @@
 'use client'
 
-import type React from 'react'
+import React, { useState } from 'react'
+import { ArrowRight, Check } from 'lucide-react'
+import clsx from 'clsx'
 
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
-import { Button } from '@/components/ui/button'
-import { Input } from '@/components/ui/input'
-import { Textarea } from '@/components/ui/textarea'
-import { Label } from '@/components/ui/label'
-import { MapPin, Phone, Mail, Clock, MessageCircle, Bike } from 'lucide-react'
-import { useState } from 'react'
+import { useSite } from '@/providers/Site'
 
-type OpeningHour = {
-  day: string
-  hours: string
-  isClosed: boolean
-}
+const equipment = ['Vélo', 'Skis / snowboard', 'Trottinette', 'Autre']
+const reasons = ['Révision', 'Réparation', 'Achat d’occasion', 'Question']
 
-type ContactInfo = {
-  address: string
-  city: string
-  postalCode: string
-  country: string
-  email: string
-  phone: string
-  socialLinks?: {
-    facebook?: string
-    instagram?: string
-    twitter?: string
-    linkedin?: string
+const fieldClass =
+  'w-full rounded-xl border border-ink/15 bg-paper px-4 py-3.5 text-ink placeholder:text-ink/40 focus:border-pine focus:outline-none focus:ring-2 focus:ring-pine/20'
+
+export function ContactClient() {
+  const { settings } = useSite()
+  const [kind, setKind] = useState(equipment[0])
+  const [reason, setReason] = useState(reasons[0])
+  const [sent, setSent] = useState(false)
+
+  if (sent) {
+    return (
+      <div className="flex h-full flex-col justify-center rounded-[2rem] bg-pine p-10 text-paper contours">
+        <span className="flex h-14 w-14 items-center justify-center rounded-full bg-signal text-ink">
+          <Check className="h-7 w-7" />
+        </span>
+        <h2 className="display mt-8 text-5xl">C&apos;est noté !</h2>
+        <p className="mt-4 max-w-md text-lg text-paper/80">
+          On vous rappelle dans la journée pour caler le créneau.
+          {settings.demoNotice && ' (Site de démonstration : aucune demande n’est réellement envoyée.)'}
+        </p>
+        <button type="button" onClick={() => setSent(false)} className="mt-8 self-start font-semibold underline underline-offset-4">
+          Faire une autre demande
+        </button>
+      </div>
+    )
   }
-} | null
-
-type ContactClientProps = {
-  openingHours: OpeningHour[]
-  contactInfo: ContactInfo
-}
-
-export function ContactClient({ openingHours, contactInfo }: ContactClientProps) {
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    phone: '',
-    message: '',
-  })
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault()
-    // Handle form submission
-    console.log('Form submitted:', formData)
-    alert('Merci pour votre message ! Nous vous répondrons bientôt.')
-    setFormData({ name: '', email: '', phone: '', message: '' })
-  }
-
-  // Default opening hours if none in backend
-  const defaultOpeningHours: OpeningHour[] = [
-    { day: 'Lundi', hours: '9h00 - 18h00', isClosed: false },
-    { day: 'Mardi', hours: '9h00 - 18h00', isClosed: false },
-    { day: 'Mercredi', hours: '9h00 - 18h00', isClosed: false },
-    { day: 'Jeudi', hours: '9h00 - 18h00', isClosed: false },
-    { day: 'Vendredi', hours: '9h00 - 18h00', isClosed: false },
-    { day: 'Samedi', hours: '10h00 - 16h00', isClosed: false },
-    { day: 'Dimanche', hours: 'Fermé', isClosed: true },
-  ]
-
-  const displayOpeningHours = openingHours.length > 0 ? openingHours : defaultOpeningHours
 
   return (
-    <div className="min-h-screen flex flex-col">
-      {/* Hero Section */}
-      <section className="relative bg-gradient-to-br from-primary via-primary/90 to-accent text-primary-foreground py-16 md:py-24 overflow-hidden">
-        {/* Decorative elements */}
-        <div className="absolute inset-0 overflow-hidden">
-          <div className="absolute -top-20 -right-20 w-64 h-64 bg-white/10 rounded-full blur-3xl" />
-          <div className="absolute -bottom-20 -left-20 w-64 h-64 bg-accent/30 rounded-full blur-3xl" />
-          <MessageCircle className="absolute top-10 right-20 w-24 h-24 text-white/10" />
-          <Phone className="absolute bottom-10 left-1/4 w-16 h-16 text-white/10 rotate-12" />
-          <Bike className="absolute top-1/2 right-10 w-20 h-20 text-white/5 -rotate-12" />
+    <form
+      onSubmit={(event) => {
+        event.preventDefault()
+        setSent(true)
+      }}
+      className="rounded-[2rem] border border-border bg-card p-7 md:p-10"
+    >
+      <h2 className="display text-4xl md:text-5xl">Réserver un créneau</h2>
+      <p className="mt-3 text-ink/70">Diagnostic offert. On confirme le rendez-vous par téléphone.</p>
+
+      <fieldset className="mt-8">
+        <legend className="tag text-pine">Votre matériel</legend>
+        <div className="mt-3 flex flex-wrap gap-2">
+          {equipment.map((option) => (
+            <Chip key={option} selected={kind === option} onClick={() => setKind(option)}>
+              {option}
+            </Chip>
+          ))}
         </div>
-        <div className="container mx-auto px-4 relative z-10">
-          <h1 className="text-5xl md:text-7xl font-bold mb-6 text-balance handwritten-title">
-            Contactez-nous
-          </h1>
-          <p className="text-2xl md:text-3xl text-primary-foreground/95 max-w-3xl text-pretty leading-relaxed">
-            Entrez en contact avec notre équipe. Nous sommes là pour vous aider avec tous vos
-            besoins.
-          </p>
+      </fieldset>
+
+      <fieldset className="mt-6">
+        <legend className="tag text-pine">Pour</legend>
+        <div className="mt-3 flex flex-wrap gap-2">
+          {reasons.map((option) => (
+            <Chip key={option} selected={reason === option} onClick={() => setReason(option)}>
+              {option}
+            </Chip>
+          ))}
         </div>
-      </section>
+      </fieldset>
 
-      {/* Contact Form & Info */}
-      <section className="py-16">
-        <div className="container mx-auto px-4">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 max-w-6xl mx-auto">
-            {/* Contact Form */}
-            <Card>
-              <CardHeader>
-                <CardTitle className="text-2xl">Envoyez-nous un message</CardTitle>
-                <CardDescription>
-                  Remplissez le formulaire ci-dessous et nous vous répondrons dans les 24 heures
-                </CardDescription>
-              </CardHeader>
-              <CardContent>
-                <form onSubmit={handleSubmit} className="space-y-6">
-                  <div className="space-y-2">
-                    <Label htmlFor="name">Nom *</Label>
-                    <Input
-                      id="name"
-                      required
-                      value={formData.name}
-                      onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                      placeholder="Votre nom"
-                    />
-                  </div>
+      <div className="mt-8 grid gap-4 sm:grid-cols-2">
+        <label className="block">
+          <span className="mb-2 block text-sm font-semibold">Nom</span>
+          <input required name="name" autoComplete="name" className={fieldClass} placeholder="Camille Martin" />
+        </label>
+        <label className="block">
+          <span className="mb-2 block text-sm font-semibold">Téléphone</span>
+          <input required name="phone" type="tel" autoComplete="tel" className={fieldClass} placeholder="06 12 34 56 78" />
+        </label>
+        <label className="block sm:col-span-2">
+          <span className="mb-2 block text-sm font-semibold">Jour souhaité</span>
+          <input name="date" type="date" className={fieldClass} />
+        </label>
+        <label className="block sm:col-span-2">
+          <span className="mb-2 block text-sm font-semibold">Ce qui se passe</span>
+          <textarea
+            name="message"
+            rows={4}
+            className={fieldClass}
+            placeholder="Ex. : les vitesses sautent à l’arrière, et le frein avant grince."
+          />
+        </label>
+      </div>
 
-                  <div className="space-y-2">
-                    <Label htmlFor="email">Email *</Label>
-                    <Input
-                      id="email"
-                      type="email"
-                      required
-                      value={formData.email}
-                      onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                      placeholder="votre@email.com"
-                    />
-                  </div>
-
-                  <div className="space-y-2">
-                    <Label htmlFor="phone">Téléphone</Label>
-                    <Input
-                      id="phone"
-                      type="tel"
-                      value={formData.phone}
-                      onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                      placeholder="(555) 123-4567"
-                    />
-                  </div>
-
-                  <div className="space-y-2">
-                    <Label htmlFor="message">Message *</Label>
-                    <Textarea
-                      id="message"
-                      required
-                      value={formData.message}
-                      onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                      placeholder="Parlez-nous de vos besoins en réparation de vélo..."
-                      rows={5}
-                    />
-                  </div>
-
-                  <Button type="submit" className="w-full" size="lg">
-                    Envoyer le message
-                  </Button>
-                </form>
-              </CardContent>
-            </Card>
-
-            {/* Contact Information */}
-            <div className="space-y-4">
-              {/* Location Card - Compact */}
-              <Card>
-                <CardContent className="p-0">
-                  {/* Map on top */}
-                  <div className="h-48 rounded-t-lg overflow-hidden">
-                    <iframe
-                      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2889.1812259805!2d1.4436!3d43.6047!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNDPCsDM2JzE3LjAiTiAxwrAyNiczOS40IkU!5e0!3m2!1sfr!2sfr!4v1234567890"
-                      width="100%"
-                      height="100%"
-                      style={{ border: 0 }}
-                      allowFullScreen
-                      loading="lazy"
-                      referrerPolicy="no-referrer-when-downgrade"
-                      title="Localisation Cyclette & Glisse"
-                    />
-                  </div>
-                  {/* Address below */}
-                  {contactInfo && (
-                    <div className="p-4">
-                      <div className="flex items-start gap-3">
-                        <MapPin className="h-5 w-5 text-primary mt-0.5 flex-shrink-0" />
-                        <div className="flex-1">
-                          <p className="font-medium">{contactInfo.address}</p>
-                          <p className="text-sm text-muted-foreground">
-                            {contactInfo.city}, {contactInfo.postalCode} - {contactInfo.country}
-                          </p>
-                        </div>
-                      </div>
-                      <Button
-                        variant="outline"
-                        size="sm"
-                        className="w-full mt-3 bg-transparent"
-                        asChild
-                      >
-                        <a
-                          href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(`${contactInfo.address} ${contactInfo.city} ${contactInfo.postalCode}`)}`}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                        >
-                          Obtenir l'itinéraire
-                        </a>
-                      </Button>
-                    </div>
-                  )}
-                </CardContent>
-              </Card>
-
-              {/* Hours */}
-              <Card>
-                <CardHeader className="pb-3">
-                  <CardTitle className="flex items-center gap-2 text-lg">
-                    <Clock className="h-5 w-5 text-primary" />
-                    Heures d'ouverture
-                  </CardTitle>
-                </CardHeader>
-                <CardContent className="space-y-2 pt-0">
-                  {displayOpeningHours.map((hour, index) => (
-                    <div key={index} className="flex justify-between text-sm">
-                      <span className="font-medium">{hour.day}</span>
-                      <span className={hour.isClosed ? 'text-red-500' : 'text-muted-foreground'}>
-                        {hour.isClosed ? 'Fermé' : hour.hours}
-                      </span>
-                    </div>
-                  ))}
-                </CardContent>
-              </Card>
-
-              {/* Contact Info - Combined */}
-              {contactInfo && (
-                <Card>
-                  <CardContent className="p-4 space-y-3">
-                    {contactInfo.phone && (
-                      <a
-                        href={`tel:${contactInfo.phone.replace(/\s/g, '')}`}
-                        className="flex items-center gap-3 p-3 rounded-lg bg-primary/5 hover:bg-primary/10 transition-colors"
-                      >
-                        <Phone className="h-5 w-5 text-primary" />
-                        <span className="font-medium">{contactInfo.phone}</span>
-                      </a>
-                    )}
-                    {contactInfo.email && (
-                      <a
-                        href={`mailto:${contactInfo.email}`}
-                        className="flex items-center gap-3 p-3 rounded-lg bg-primary/5 hover:bg-primary/10 transition-colors"
-                      >
-                        <Mail className="h-5 w-5 text-primary" />
-                        <span className="font-medium">{contactInfo.email}</span>
-                      </a>
-                    )}
-                  </CardContent>
-                </Card>
-              )}
-            </div>
-          </div>
-        </div>
-      </section>
-    </div>
+      <button
+        type="submit"
+        className="mt-8 inline-flex w-full items-center justify-center gap-2 rounded-full bg-pine px-6 py-4 font-semibold text-paper transition-colors hover:bg-pine-deep sm:w-auto"
+      >
+        Envoyer la demande
+        <ArrowRight className="h-4 w-4" />
+      </button>
+    </form>
   )
 }
 
+function Chip({ selected, onClick, children }: { selected: boolean; onClick: () => void; children: React.ReactNode }) {
+  return (
+    <button
+      type="button"
+      aria-pressed={selected}
+      onClick={onClick}
+      className={clsx(
+        'rounded-full border px-4 py-2 text-sm font-semibold transition-colors',
+        selected ? 'border-pine bg-pine text-paper' : 'border-ink/15 hover:border-ink/40',
+      )}
+    >
+      {children}
+    </button>
+  )
+}

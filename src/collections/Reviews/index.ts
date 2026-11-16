@@ -31,7 +31,7 @@ export const Reviews: CollectionConfig = {
       label: 'Photo du client',
       type: 'upload',
       relationTo: 'media',
-      required: true,
+      required: false,
     },
     {
       name: 'rating',

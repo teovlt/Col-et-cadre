@@ -105,8 +105,12 @@ export interface Config {
     defaultIDType: string;
   };
   fallbackLocale: null;
-  globals: {};
-  globalsSelect: {};
+  globals: {
+    'site-settings': SiteSetting;
+  };
+  globalsSelect: {
+    'site-settings': SiteSettingsSelect<false> | SiteSettingsSelect<true>;
+  };
   locale: null;
   user: User & {
     collection: 'users';
@@ -353,7 +357,7 @@ export interface Scooter {
 export interface Review {
   id: string;
   name: string;
-  image: string | Media;
+  image?: (string | null) | Media;
   /**
    * Note de 1 à 5 étoiles
    */
@@ -885,6 +889,51 @@ export interface PayloadMigrationsSelect<T extends boolean = true> {
   batch?: T;
   updatedAt?: T;
   createdAt?: T;
+}
+/**
+ * Le nom du commerce et les textes principaux. Une modification s'applique à tout le site : en-tête, pied de page, titres des pages et mentions légales.
+ *
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "site-settings".
+ */
+export interface SiteSetting {
+  id: string;
+  /**
+   * Affiché à côté du logo. Une esperluette (&) est mise en valeur automatiquement.
+   */
+  name: string;
+  tagline: string;
+  city: string;
+  foundedYear: number;
+  heroTitle: string;
+  heroText: string;
+  /**
+   * Environ 150 caractères. Apparaît sous le titre dans les résultats de recherche.
+   */
+  description: string;
+  /**
+   * À laisser coché tant que le commerce est fictif : la mention apparaît dans le pied de page et les mentions légales.
+   */
+  demoNotice?: boolean | null;
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "site-settings_select".
+ */
+export interface SiteSettingsSelect<T extends boolean = true> {
+  name?: T;
+  tagline?: T;
+  city?: T;
+  foundedYear?: T;
+  heroTitle?: T;
+  heroText?: T;
+  description?: T;
+  demoNotice?: T;
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema

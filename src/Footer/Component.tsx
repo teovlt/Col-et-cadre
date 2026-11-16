@@ -1,218 +1,115 @@
+'use client'
+
 import Link from 'next/link'
-import { Instagram, Facebook, Twitter, Linkedin } from 'lucide-react'
+import React from 'react'
+import { ArrowUpRight } from 'lucide-react'
 
-type ContactInfo = {
-  address: string
-  city: string
-  postalCode: string
-  country: string
-  email: string
-  phone: string
-  socialLinks?: {
-    facebook?: string | null
-    instagram?: string | null
-    twitter?: string | null
-    linkedin?: string | null
-  }
-} | null
+import { Logo, Wordmark } from '@/components/Logo/Logo'
+import { navLinks } from '@/Header/Component'
+import { useSite } from '@/providers/Site'
 
-type FooterProps = {
-  contactInfo: ContactInfo
-}
-
-export function Footer({ contactInfo }: FooterProps) {
-  const fullAddress = contactInfo
-    ? `${contactInfo.address}, ${contactInfo.city} ${contactInfo.postalCode}, ${contactInfo.country}`
-    : '123 Bike Lane, Cycle City'
+export function Footer() {
+  const { settings, contact, hours } = useSite()
+  const socials = Object.entries(contact.socialLinks).filter(([, url]) => Boolean(url)) as [string, string][]
 
   return (
-    <footer className="bg-muted mt-20">
-      <div className="container mx-auto px-4 py-12">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          <div>
-            <div className="flex items-center gap-2 mb-4">
-              <span className="text-2xl font-bold text-primary">Cyclette & Glisse</span>
+    <footer className="mt-24 bg-pine-deep text-paper">
+      <div className="hazard h-2" aria-hidden="true" />
+      <div className="contours">
+        <div className="container py-16 md:py-20">
+          <div className="grid gap-12 md:grid-cols-12">
+            <div className="md:col-span-5">
+              <Logo name={settings.name} tone="light" markClassName="h-12 w-12" textClassName="text-3xl" />
+              <p className="mt-5 max-w-sm text-paper/70 leading-relaxed">
+                {settings.tagline}. Atelier de réparation et boutique à {settings.city}, depuis {settings.foundedYear}.
+              </p>
+              <Link
+                href="/contact#rendez-vous"
+                className="mt-8 inline-flex items-center gap-2 rounded-full bg-signal px-5 py-3 text-sm font-semibold text-ink transition-transform hover:-translate-y-0.5"
+              >
+                Prendre rendez-vous à l&apos;atelier
+                <ArrowUpRight className="h-4 w-4" />
+              </Link>
             </div>
-            <p className="text-muted-foreground text-sm">
-              Votre spécialiste vélos, skis et trottinettes d&apos;occasion. Vente et réparation
-              avec soin et expertise.
+
+            <div className="md:col-span-3">
+              <p className="tag text-signal">L&apos;atelier</p>
+              <address className="mt-4 not-italic space-y-1.5 text-paper/80">
+                <p>{contact.address}</p>
+                <p>
+                  {contact.postalCode} {contact.city}
+                </p>
+                <p className="pt-3">
+                  <a href={`tel:${contact.phone.replace(/\s/g, '')}`} className="font-mono hover:text-signal">
+                    {contact.phone}
+                  </a>
+                </p>
+                <p>
+                  <a href={`mailto:${contact.email}`} className="hover:text-signal break-all">
+                    {contact.email}
+                  </a>
+                </p>
+              </address>
+              {socials.length > 0 && (
+                <div className="mt-5 flex gap-4 text-sm">
+                  {socials.map(([network, url]) => (
+                    <a key={network} href={url} target="_blank" rel="noopener noreferrer" className="capitalize link-underline">
+                      {network}
+                    </a>
+                  ))}
+                </div>
+              )}
+            </div>
+
+            <div className="md:col-span-2">
+              <p className="tag text-signal">Horaires</p>
+              <ul className="mt-4 space-y-1.5 font-mono text-sm">
+                {hours.map((h) => (
+                  <li key={h.day} className="flex justify-between gap-4">
+                    <span className="text-paper/60">{h.short}</span>
+                    <span className={h.isClosed ? 'text-paper/40' : ''}>{h.hours}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            <nav className="md:col-span-2" aria-label="Pied de page">
+              <p className="tag text-signal">Plan</p>
+              <ul className="mt-4 space-y-1.5">
+                {navLinks.map((link) => (
+                  <li key={link.href}>
+                    <Link href={link.href} className="text-paper/80 hover:text-paper link-underline">
+                      {link.label}
+                    </Link>
+                  </li>
+                ))}
+                <li>
+                  <Link href="/legal" className="text-paper/80 hover:text-paper link-underline">
+                    Mentions légales
+                  </Link>
+                </li>
+              </ul>
+            </nav>
+          </div>
+
+          <div aria-hidden="true" className="mt-16 select-none overflow-hidden text-paper/[0.07]">
+            <Wordmark name={settings.name} className="block whitespace-nowrap text-[18vw] md:text-[12.5vw] leading-[0.8]" />
+          </div>
+
+          <div className="mt-8 flex flex-col gap-3 border-t border-paper/15 pt-6 text-xs text-paper/55 md:flex-row md:items-center md:justify-between">
+            <p>
+              © {new Date().getFullYear()} {settings.name}
             </p>
-            <div className="flex gap-4 mt-6">
-              {contactInfo?.socialLinks?.instagram && contactInfo.socialLinks.instagram.trim() && (() => {
-                const url = contactInfo.socialLinks.instagram.trim()
-                const validUrl = url.startsWith('http://') || url.startsWith('https://') ? url : `https://${url}`
-                try {
-                  new URL(validUrl)
-                  return (
-                    <a
-                      href={validUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="bg-primary text-primary-foreground p-2 rounded-full hover:scale-110 transition-transform"
-                      aria-label="Instagram"
-                    >
-                      <Instagram className="h-5 w-5" />
-                    </a>
-                  )
-                } catch {
-                  return null
-                }
-              })()}
-              {contactInfo?.socialLinks?.facebook && contactInfo.socialLinks.facebook.trim() && (() => {
-                const url = contactInfo.socialLinks.facebook.trim()
-                const validUrl = url.startsWith('http://') || url.startsWith('https://') ? url : `https://${url}`
-                try {
-                  new URL(validUrl)
-                  return (
-                    <a
-                      href={validUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="bg-primary text-primary-foreground p-2 rounded-full hover:scale-110 transition-transform"
-                      aria-label="Facebook"
-                    >
-                      <Facebook className="h-5 w-5" />
-                    </a>
-                  )
-                } catch {
-                  return null
-                }
-              })()}
-              {contactInfo?.socialLinks?.twitter && contactInfo.socialLinks.twitter.trim() && (() => {
-                const url = contactInfo.socialLinks.twitter.trim()
-                const validUrl = url.startsWith('http://') || url.startsWith('https://') ? url : `https://${url}`
-                try {
-                  new URL(validUrl)
-                  return (
-                    <a
-                      href={validUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="bg-primary text-primary-foreground p-2 rounded-full hover:scale-110 transition-transform"
-                      aria-label="Twitter/X"
-                    >
-                      <Twitter className="h-5 w-5" />
-                    </a>
-                  )
-                } catch {
-                  return null
-                }
-              })()}
-              {contactInfo?.socialLinks?.linkedin && contactInfo.socialLinks.linkedin.trim() && (() => {
-                const url = contactInfo.socialLinks.linkedin.trim()
-                const validUrl = url.startsWith('http://') || url.startsWith('https://') ? url : `https://${url}`
-                try {
-                  new URL(validUrl)
-                  return (
-                    <a
-                      href={validUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="bg-primary text-primary-foreground p-2 rounded-full hover:scale-110 transition-transform"
-                      aria-label="LinkedIn"
-                    >
-                      <Linkedin className="h-5 w-5" />
-                    </a>
-                  )
-                } catch {
-                  return null
-                }
-              })()}
-            </div>
+            {settings.demoNotice && (
+              <p>
+                Site de démonstration : {settings.name} est un commerce fictif. Réalisé par{' '}
+                <a href="https://teovillet.fr" target="_blank" rel="noopener noreferrer" className="text-paper underline underline-offset-2">
+                  Téo Villet
+                </a>
+                . Photos : Unsplash.
+              </p>
+            )}
           </div>
-
-          <div>
-            <h3 className="font-semibold mb-4">Liens rapides</h3>
-            <ul className="space-y-2 text-sm">
-              <li>
-                <Link
-                  href="/"
-                  className="text-muted-foreground hover:text-primary transition-colors"
-                >
-                  Accueil
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/about"
-                  className="text-muted-foreground hover:text-primary transition-colors"
-                >
-                  À propos
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/shop"
-                  className="text-muted-foreground hover:text-primary transition-colors"
-                >
-                  Boutique
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/prices"
-                  className="text-muted-foreground hover:text-primary transition-colors"
-                >
-                  Tarifs
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/contact"
-                  className="text-muted-foreground hover:text-primary transition-colors"
-                >
-                  Contact
-                </Link>
-              </li>
-            </ul>
-          </div>
-
-          <div>
-            <h3 className="font-semibold mb-4">Coordonnées</h3>
-            <ul className="space-y-2 text-sm text-muted-foreground">
-              <li>{fullAddress}</li>
-              {contactInfo?.phone && (
-                <li>
-                  Téléphone:{' '}
-                  <a
-                    href={`tel:${contactInfo.phone.replace(/\s/g, '')}`}
-                    className="hover:text-primary transition-colors"
-                  >
-                    {contactInfo.phone}
-                  </a>
-                </li>
-              )}
-              {contactInfo?.email && (
-                <li>
-                  Email:{' '}
-                  <a
-                    href={`mailto:${contactInfo.email}`}
-                    className="hover:text-primary transition-colors"
-                  >
-                    {contactInfo.email}
-                  </a>
-                </li>
-              )}
-            </ul>
-          </div>
-        </div>
-
-        <div className="border-t border-border mt-8 pt-8 text-center text-sm text-muted-foreground">
-          <p>
-            Site de démonstration : Cyclette &amp; Glisse est un commerce fictif. Réalisé par{' '}
-            <a
-              href="https://teovillet.fr"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-primary hover:underline"
-            >
-              Téo Villet
-            </a>
-            .
-          </p>
-          <Link href="/legal" className="hover:text-primary transition-colors">
-            Mentions légales
-          </Link>
         </div>
       </div>
     </footer>

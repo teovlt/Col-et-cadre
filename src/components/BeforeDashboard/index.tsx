@@ -1,18 +1,27 @@
 import { Banner } from '@payloadcms/ui/elements/Banner'
 import React from 'react'
+import type { Payload } from 'payload'
+
+import { siteDefaults } from '@/utilities/siteDefaults'
 
 import './index.scss'
 
 const baseClass = 'before-dashboard'
 
-const BeforeDashboard: React.FC = () => {
+const BeforeDashboard = async ({ payload }: { payload: Payload }) => {
+  const settings = await payload.findGlobal({ slug: 'site-settings' }).catch(() => null)
+  const name = settings?.name || siteDefaults.name
+
   return (
     <div className={baseClass}>
       <Banner className={`${baseClass}__banner`} type="success">
-        <h4>Bienvenue sur votre tableau de bord Cyclette & Glisse ! 🚴⛷️🛴</h4>
+        <h4>Bienvenue sur l&apos;espace de gestion de {name}</h4>
       </Banner>
       <p style={{ marginTop: '1rem' }}>Depuis cet espace, vous pouvez gérer :</p>
       <ul className={`${baseClass}__instructions`}>
+        <li>
+          <strong>Identité du site</strong> - Nom du commerce, slogan, ville et textes de l&apos;accueil
+        </li>
         <li>
           <strong>Vélos</strong> - Ajouter, modifier ou supprimer les vélos en vente
         </li>
@@ -42,7 +51,7 @@ const BeforeDashboard: React.FC = () => {
         </li>
       </ul>
       <p style={{ marginTop: '1rem', color: 'var(--theme-elevation-500)' }}>
-        💡 Astuce : Utilisez le menu de gauche pour naviguer entre les sections.
+        Astuce : le menu de gauche donne accès à toutes les sections.
       </p>
     </div>
   )

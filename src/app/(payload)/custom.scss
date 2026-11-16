@@ -1,32 +1,32 @@
-// Custom Cyclette & Glisse Admin Theme - Matching Website Design
-@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800;900&display=swap');
+// Thème de l'admin aux couleurs du site : vert sapin, papier crème, jaune signalisation
+@import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;800&family=Barlow:wght@400;500;600;700&display=swap');
 
 // ============================================
 // COLOR PALETTE (matching website)
 // ============================================
-$primary: #e05d38;
-$primary-dark: #c24a2a;
-$primary-light: rgba(224, 93, 56, 0.1);
-$primary-lighter: rgba(224, 93, 56, 0.05);
+$primary: #1f4436;
+$primary-dark: #122a20;
+$primary-light: rgba(31, 68, 54, 0.1);
+$primary-lighter: rgba(31, 68, 54, 0.05);
 
-$background-light: #e8ebed;
+$background-light: #f3eee3;
 $background-dark: #1c2433;
-$card-bg: #ffffff;
-$border-color: #dcdfe2;
-$text-primary: #333333;
-$text-muted: #6b7280;
+$card-bg: #fbf8f2;
+$border-color: #d8cfbd;
+$text-primary: #15201b;
+$text-muted: #56615b;
 
 // ============================================
 // GLOBAL STYLES
 // ============================================
 :root {
-  --font-sans: 'Nunito', sans-serif !important;
+  --font-sans: 'Barlow', sans-serif !important;
   --theme-success-500: #{$primary} !important;
   --theme-elevation-0: #{$background-light} !important;
 }
 
 * {
-  font-family: 'Nunito', sans-serif !important;
+  font-family: 'Barlow', sans-serif !important;
 }
 
 // ============================================
@@ -70,7 +70,7 @@ time,
 [class*='createdAt'],
 [class*='updatedAt'],
 .document-fields__header time {
-  font-family: 'Nunito', sans-serif !important;
+  font-family: 'Barlow', sans-serif !important;
   font-weight: 600 !important;
   font-size: 14px !important;
 
@@ -131,7 +131,7 @@ time,
       background: linear-gradient(135deg, $primary 0%, $primary-dark 100%) !important;
       color: white !important;
       font-weight: 600 !important;
-      box-shadow: 0 4px 12px rgba(224, 93, 56, 0.3) !important;
+      box-shadow: 0 4px 12px rgba(31, 68, 54, 0.3) !important;
     }
   }
 }
@@ -199,7 +199,7 @@ time,
 .btn {
   border-radius: 10px !important;
   font-weight: 600 !important;
-  font-family: 'Nunito', sans-serif !important;
+  font-family: 'Barlow', sans-serif !important;
   transition: all 0.2s ease !important;
   text-transform: none !important;
   letter-spacing: 0 !important;
@@ -210,11 +210,11 @@ time,
   background: linear-gradient(135deg, $primary 0%, $primary-dark 100%) !important;
   border: none !important;
   color: white !important;
-  box-shadow: 0 4px 12px rgba(224, 93, 56, 0.25) !important;
+  box-shadow: 0 4px 12px rgba(31, 68, 54, 0.25) !important;
 
   &:hover {
     transform: translateY(-1px) !important;
-    box-shadow: 0 6px 16px rgba(224, 93, 56, 0.35) !important;
+    box-shadow: 0 6px 16px rgba(31, 68, 54, 0.35) !important;
   }
 
   &:active {
@@ -460,7 +460,7 @@ input[type='checkbox'] {
 // LOGIN PAGE
 // ============================================
 .login {
-  background: linear-gradient(135deg, #fff5f2 0%, #ffffff 50%, #fff0eb 100%) !important;
+  background: linear-gradient(135deg, #f3eee3 0%, #fbf8f2 50%, #e8e1d2 100%) !important;
 
   &::before {
     content: '';
@@ -470,8 +470,8 @@ input[type='checkbox'] {
     right: 0;
     bottom: 0;
     background:
-      radial-gradient(circle at 20% 80%, rgba(224, 93, 56, 0.08) 0%, transparent 50%),
-      radial-gradient(circle at 80% 20%, rgba(224, 93, 56, 0.05) 0%, transparent 50%);
+      radial-gradient(circle at 20% 80%, rgba(31, 68, 54, 0.08) 0%, transparent 50%),
+      radial-gradient(circle at 80% 20%, rgba(31, 68, 54, 0.05) 0%, transparent 50%);
     pointer-events: none;
     z-index: 0;
   }
@@ -486,9 +486,9 @@ input[type='checkbox'] {
   background: white !important;
   border-radius: 24px !important;
   box-shadow:
-    0 20px 60px rgba(224, 93, 56, 0.12),
+    0 20px 60px rgba(31, 68, 54, 0.12),
     0 8px 20px rgba(0, 0, 0, 0.05) !important;
-  border: 1px solid rgba(224, 93, 56, 0.1) !important;
+  border: 1px solid rgba(31, 68, 54, 0.1) !important;
   padding: 40px 32px !important;
 }
 
@@ -596,7 +596,7 @@ input[type='checkbox'] {
 
   .login__form-wrap {
     background: #2a3040 !important;
-    border-color: rgba(224, 93, 56, 0.2) !important;
+    border-color: rgba(31, 68, 54, 0.2) !important;
   }
 }
 
