@@ -1,12 +1,9 @@
 import Image from 'next/image'
 import Link from 'next/link'
-import { getPayload } from 'payload'
-import configPromise from '@payload-config'
 import { ArrowRight, ArrowUpRight, Plus, Star } from 'lucide-react'
 
-import { getSiteSettings } from '@/utilities/siteData'
+import { getFaq, getReviews, getSiteSettings } from '@/utilities/siteData'
 import { photos, unsplash } from '@/utilities/photos'
-import { mediaUrl } from '@/utilities/mediaUrl'
 
 const services = [
   'Révision complète',
@@ -51,14 +48,8 @@ const steps = [
 ]
 
 export default async function HomePage() {
-  const payload = await getPayload({ config: configPromise })
-  const [settings, reviewsData, faqData] = await Promise.all([
-    getSiteSettings(),
-    payload.find({ collection: 'reviews', limit: 6, sort: '-createdAt', depth: 1 }),
-    payload.find({ collection: 'faq', limit: 8, sort: 'order' }),
-  ])
-  const reviews = reviewsData.docs
-  const faq = faqData.docs
+  const [settings, reviews, allFaq] = await Promise.all([getSiteSettings(), getReviews(6), getFaq()])
+  const faq = allFaq.slice(0, 8)
   const years = new Date().getFullYear() - settings.foundedYear
 
   return (
@@ -242,7 +233,7 @@ export default async function HomePage() {
           <h2 className="display mt-4 max-w-2xl text-5xl md:text-6xl">Ils roulent, et glissent, avec nous.</h2>
           <div className="mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
             {reviews.map((review) => {
-              const image = mediaUrl(review.image)
+              const image = review.image
               return (
                 <figure key={review.id} className="flex flex-col rounded-3xl border border-border bg-card p-7">
                   <div className="flex gap-1 text-signal" aria-label={`${review.rating} sur 5`}>

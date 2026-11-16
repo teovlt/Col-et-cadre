@@ -1,10 +1,9 @@
 import Image from 'next/image'
 import Link from 'next/link'
-import { getPayload } from 'payload'
-import configPromise from '@payload-config'
 import { ArrowRight, Check } from 'lucide-react'
 
 import { photos, unsplash } from '@/utilities/photos'
+import { getPrices } from '@/utilities/siteData'
 
 const formatPrice = (price: number) =>
   price === 0 ? 'Offert' : price.toLocaleString('fr-FR', { style: 'currency', currency: 'EUR', maximumFractionDigits: 0 })
@@ -17,8 +16,7 @@ const promises = [
 ]
 
 export default async function PricesPage() {
-  const payload = await getPayload({ config: configPromise })
-  const { docs: prices } = await payload.find({ collection: 'prices', limit: 100, sort: 'order' })
+  const prices = await getPrices()
 
   return (
     <>

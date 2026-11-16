@@ -1,11 +1,8 @@
 import Image from 'next/image'
 import Link from 'next/link'
-import { getPayload } from 'payload'
-import configPromise from '@payload-config'
 import { ArrowRight } from 'lucide-react'
 
-import { getSiteSettings } from '@/utilities/siteData'
-import { mediaUrl } from '@/utilities/mediaUrl'
+import { getSiteSettings, getTeam } from '@/utilities/siteData'
 import { photos, unsplash } from '@/utilities/photos'
 
 const values = [
@@ -24,11 +21,7 @@ const values = [
 ]
 
 export default async function AboutPage() {
-  const payload = await getPayload({ config: configPromise })
-  const [settings, { docs: team }] = await Promise.all([
-    getSiteSettings(),
-    payload.find({ collection: 'team', limit: 20, sort: 'order', depth: 1 }),
-  ])
+  const [settings, team] = await Promise.all([getSiteSettings(), getTeam()])
 
   return (
     <>
@@ -77,7 +70,7 @@ export default async function AboutPage() {
             <h2 className="display mt-4 text-5xl md:text-6xl">Ceux qui vont s&apos;occuper de votre matériel.</h2>
             <ul className="mt-14 grid gap-10 sm:grid-cols-2 lg:grid-cols-3">
               {team.map((member) => {
-                const photo = mediaUrl(member.photo, 'medium')
+                const photo = member.photo
                 return (
                   <li key={member.id}>
                     <div className="relative aspect-[4/5] overflow-hidden rounded-[2rem] bg-pine-deep">
